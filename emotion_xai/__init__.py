@@ -8,10 +8,31 @@ __version__ = "0.1.0"
 __author__ = "Your Name"
 __email__ = "your.email@example.com"
 
-from emotion_xai.data import preprocessing
-from emotion_xai.models import baseline, transformer
-from emotion_xai.explainability import explanations
-from emotion_xai.clustering import feedback_clustering
+# Import modules with error handling
+try:
+    from emotion_xai.data import preprocessing
+except ImportError as e:
+    preprocessing = None
+
+try:
+    from emotion_xai.models import baseline
+except ImportError as e:
+    baseline = None
+
+try:
+    from emotion_xai.models import transformer
+except ImportError as e:
+    transformer = None
+
+try:
+    from emotion_xai.explainability import explanations
+except ImportError as e:
+    explanations = None
+
+try:
+    from emotion_xai.clustering import feedback_clustering
+except ImportError as e:
+    feedback_clustering = None
 
 __all__ = [
     "preprocessing",

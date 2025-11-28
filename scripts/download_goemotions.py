@@ -26,24 +26,24 @@ def download_goemotions(data_dir: Path = Path("data/raw")) -> bool:
     # Create directory if it doesn't exist
     data_dir.mkdir(parents=True, exist_ok=True)
     
-    # GoEmotions dataset URLs (official repository)
+    # GoEmotions dataset URLs (updated official repository)
     urls = {
-        "train": "https://storage.googleapis.com/gresearch/goemotions/data/train.tsv",
-        "dev": "https://storage.googleapis.com/gresearch/goemotions/data/dev.tsv", 
-        "test": "https://storage.googleapis.com/gresearch/goemotions/data/test.tsv"
+        "full_1": "https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_1.csv",
+        "full_2": "https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_2.csv", 
+        "full_3": "https://storage.googleapis.com/gresearch/goemotions/data/full_dataset/goemotions_3.csv"
     }
     
     print("🚀 Downloading GoEmotions dataset...")
     
     try:
-        for split, url in urls.items():
-            file_path = data_dir / f"goemotions_{split}.tsv"
+        for part, url in urls.items():
+            file_path = data_dir / f"goemotions_{part}.csv"
             
             if file_path.exists():
-                print(f"✅ {split}.tsv already exists, skipping...")
+                print(f"✅ {part}.csv already exists, skipping...")
                 continue
                 
-            print(f"📥 Downloading {split} split...")
+            print(f"📥 Downloading {part}...")
             response = requests.get(url, stream=True)
             response.raise_for_status()
             
@@ -51,9 +51,9 @@ def download_goemotions(data_dir: Path = Path("data/raw")) -> bool:
                 for chunk in response.iter_content(chunk_size=8192):
                     f.write(chunk)
             
-            print(f"✅ Downloaded {split} split ({file_path.stat().st_size // 1024} KB)")
+            print(f"✅ Downloaded {part} ({file_path.stat().st_size // 1024} KB)")
             
-        # Combine splits into single file for convenience
+        # Combine parts into single file for convenience
         combine_splits(data_dir)
         
         print("🎉 GoEmotions dataset download completed successfully!")
@@ -64,16 +64,16 @@ def download_goemotions(data_dir: Path = Path("data/raw")) -> bool:
         return False
 
 def combine_splits(data_dir: Path) -> None:
-    """Combine train/dev/test splits into single CSV file."""
+    """Combine downloaded parts into single CSV file."""
     try:
-        print("🔄 Combining dataset splits...")
+        print("🔄 Combining dataset parts...")
         
         dfs = []
-        for split in ["train", "dev", "test"]:
-            file_path = data_dir / f"goemotions_{split}.tsv"
+        for part in ["full_1", "full_2", "full_3"]:
+            file_path = data_dir / f"goemotions_{part}.csv"
             if file_path.exists():
-                df = pd.read_csv(file_path, sep='\t')
-                df['split'] = split
+                df = pd.read_csv(file_path)
+                print(f"  📁 Part {part}: {len(df)} samples")
                 dfs.append(df)
         
         if dfs:
@@ -85,8 +85,22 @@ def combine_splits(data_dir: Path) -> None:
             print(f"📊 Total samples: {len(combined_df)}")
             print(f"📋 Columns: {list(combined_df.columns)}")
             
+            # Create a simple processed version with text and emotions
+            if 'text' in combined_df.columns:
+                print("🔄 Creating processed version...")
+                # Keep main columns for our project
+                main_cols = ['text', 'id', 'author', 'subreddit']
+                emotion_cols = [col for col in combined_df.columns if col not in 
+                               ['text', 'id', 'author', 'subreddit', 'link_id', 'parent_id', 'created_utc', 
+                                'rater_id', 'example_very_unclear']]
+                
+                processed_df = combined_df[main_cols + emotion_cols].copy()
+                processed_path = data_dir / "goemotions_processed.csv"
+                processed_df.to_csv(processed_path, index=False)
+                print(f"✅ Processed dataset saved to {processed_path}")
+            
     except Exception as e:
-        print(f"⚠️ Warning: Could not combine splits: {e}")
+        print(f"⚠️ Warning: Could not combine parts: {e}")
 
 def verify_dataset(data_dir: Path = Path("data/raw")) -> bool:
     """Verify the downloaded dataset integrity."""
@@ -98,13 +112,26 @@ def verify_dataset(data_dir: Path = Path("data/raw")) -> bool:
             
         df = pd.read_csv(csv_path)
         
-        print("🔍 Dataset verification:")
+        print(f"🔍 Dataset verification:")
         print(f"  📊 Shape: {df.shape}")
         print(f"  📋 Columns: {list(df.columns)}")
-        print(f"  🏷️ Splits: {df['split'].value_counts().to_dict()}")
+        
+        # Check for split column (may not exist in raw data)
+        if 'split' in df.columns:
+            print(f"  🏷️ Splits: {df['split'].value_counts().to_dict()}")
+        
+        # Check emotion columns
+        emotion_cols = [col for col in df.columns if col in [
+            'admiration', 'amusement', 'anger', 'annoyance', 'approval', 'caring',
+            'confusion', 'curiosity', 'desire', 'disappointment', 'disapproval',
+            'disgust', 'embarrassment', 'excitement', 'fear', 'gratitude', 'grief',
+            'joy', 'love', 'nervousness', 'optimism', 'pride', 'realization',
+            'relief', 'remorse', 'sadness', 'surprise', 'neutral'
+        ]]
+        print(f"  🎭 Emotion labels found: {len(emotion_cols)}")
         
         # Basic data quality checks
-        if len(df) < 50000:  # GoEmotions should have ~58k samples
+        if len(df) < 50000:  # GoEmotions should have substantial samples
             print("⚠️ Warning: Dataset seems smaller than expected")
             
         if 'text' not in df.columns:

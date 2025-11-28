@@ -1,0 +1,15 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include pyproject.toml
+include requirements.txt
+recursive-include emotion_xai *.py
+recursive-include config *.yaml *.yml
+recursive-include docs *.md *.rst *.txt
+recursive-include tests *.py
+exclude .gitignore
+exclude .pre-commit-config.yaml
+exclude setup.cfg
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store

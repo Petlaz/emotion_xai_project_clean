@@ -1,0 +1,15 @@
+# Development configuration
+
+# Override default settings for development
+training:
+  batch_size: 8  # Smaller batch size for development
+  num_epochs: 1  # Fewer epochs for quick testing
+  save_steps: 100
+  eval_steps: 100
+
+logging:
+  level: "DEBUG"
+
+# Development-specific paths
+data:
+  raw_data_path: "data/raw/goemotions_sample.csv"  # Use sample data for dev

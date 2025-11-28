@@ -5,7 +5,7 @@
 ### 1. Clone and Setup
 
 ```bash
-git clone https://github.com/yourusername/emotion-xai-project.git
+git clone https://github.com/Petlaz/emotion-xai-project.git
 cd emotion-xai-project
 python -m venv .venv
 source .venv/bin/activate

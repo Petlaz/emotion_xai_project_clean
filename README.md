@@ -1,7 +1,7 @@
 # Emotion-Aware Customer Feedback Analysis with Explainable AI
 
-[![CI/CD Pipeline](https://github.com/yourusername/emotion-xai-project/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/yourusername/emotion-xai-project/actions)
-[![codecov](https://codecov.io/gh/yourusername/emotion-xai-project/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/emotion-xai-project)
+[![CI/CD Pipeline](https://github.com/Petlaz/emotion-xai-project/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/Petlaz/emotion-xai-project/actions)
+[![codecov](https://codecov.io/gh/Petlaz/emotion-xai-project/branch/main/graph/badge.svg)](https://codecov.io/gh/Petlaz/emotion-xai-project)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
@@ -154,7 +154,7 @@ emotion_xai_project/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/emotion-xai-project.git
+git clone https://github.com/Petlaz/emotion-xai-project.git
 cd emotion-xai-project
 ```
 

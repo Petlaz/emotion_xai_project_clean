@@ -148,6 +148,20 @@ preprocessor_config.json
 models/
 !models/.gitkeep
 
+# Additional large folders and files
+
+# Specific subfolders in models/
+models/cluster_embeddings/
+models/saved_models/
+
+# Specific subfolders in data/
+data/processed/
+data/raw/
+
+# Specific subfolders in results/
+results/metrics/
+results/plots/
+
 # Dataset folders
 data/
 !data/.gitkeep

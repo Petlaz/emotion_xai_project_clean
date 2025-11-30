@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # **Project:** Explainable AI for Emotion Detection in Social Media Text
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -26,17 +26,6 @@ A comprehensive package for analyzing social media text using transformer models
 - **✅ Production Model**: F1-macro 0.196 (19.6% - DistilRoBERTa fine-tuned)
 - **🎯 Ultimate Target**: F1-macro > 0.6 (60% - future optimization)
 
-## 🚀 Quick Start
-=======
-# Emotion-Aware Customer Feedback Analysis with Explainable AI
-
-[![CI/CD Pipeline](https://github.com/Petlaz/emotion-xai-project/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/Petlaz/emotion-xai-project/actions)
-[![codecov](https://codecov.io/gh/Petlaz/emotion-xai-project/branch/main/graph/badge.svg)](https://codecov.io/gh/Petlaz/emotion-xai-project)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
-
-A comprehensive package for analyzing customer feedback using transformer models, explainable AI techniques, and clustering for theme discovery.
-
 ## Features
 
 - **Multi-label emotion classification** using fine-tuned transformer models (DistilRoBERTa)
@@ -47,14 +36,13 @@ A comprehensive package for analyzing customer feedback using transformer models
 - **Production-ready** with Docker support and CI/CD pipelines
 
 ## Quick Start
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
 
 ### Installation
 
 ```bash
-<<<<<<< HEAD
+
 # Clone the repository
-git clone https://github.com/Petlaz/emotion_xai_project.git
+git clone https://github.com/Petlaz/emotion_xai_project_clean.git
 cd emotion_xai_project
 
 # Install dependencies
@@ -62,9 +50,9 @@ pip install -r requirements.txt
 
 # Optional: Install in development mode
 pip install -e .
-=======
+
 pip install emotion-xai
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
+
 ```
 
 ### Basic Usage
@@ -73,7 +61,6 @@ pip install emotion-xai
 from emotion_xai.data.preprocessing import load_dataset, prepare_features
 from emotion_xai.models.baseline import BaselineModel
 from emotion_xai.explainability.explanations import explain_with_shap
-<<<<<<< HEAD
 
 # Load and prepare data
 data = load_dataset("data/processed/train_data_*.csv")
@@ -84,7 +71,7 @@ model = BaselineModel()
 model.fit(train_texts, train_labels)
 
 # Evaluate performance
-=======
+
 from emotion_xai.utils.device import resolve_device
 
 # Setup device optimization (automatic detection: CUDA/MPS/CPU)
@@ -99,7 +86,7 @@ model = BaselineModel()
 model.fit(train_texts, train_labels)
 
 # Evaluate model performance (Current: F1-macro 0.161)
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
+
 metrics = model.evaluate(val_texts, val_labels)
 print(f"F1-macro: {metrics['f1_macro']:.3f}")
 
@@ -107,7 +94,6 @@ print(f"F1-macro: {metrics['f1_macro']:.3f}")
 explanations = explain_with_shap(model, sample_texts)
 ```
 
-<<<<<<< HEAD
 ## 🔥 Production Transformer Training
 
 ### Quick Training Options
@@ -505,7 +491,6 @@ pip install -e ".[dev]"
 pre-commit install
 ```
 
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
 ### Running Tests
 
 ```bash
@@ -513,25 +498,24 @@ pre-commit install
 pytest
 
 # Run with coverage
-<<<<<<< HEAD
+
 pytest --cov=emotion_xai tests/
 
 # Run specific test categories
 pytest tests/unit/          # Unit tests
 pytest tests/integration/   # Integration tests
-=======
+
 pytest --cov=emotion_xai --cov-report=html
 
 # Run specific test types
 pytest tests/unit/          # Unit tests only
 pytest tests/integration/   # Integration tests only
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
+
 ```
 
 ### Code Quality
 
 ```bash
-<<<<<<< HEAD
 # Code formatting
 black emotion_xai/ scripts/ tests/
 isort emotion_xai/ scripts/ tests/
@@ -592,7 +576,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For questions, issues, or contributions:
-- **GitHub Issues**: [Create an issue](https://github.com/Petlaz/emotion_xai_project/issues)
+- **GitHub Issues**: [Create an issue](https://github.com/Petlaz/emotion_xai_project_clean/issues)
 - **Documentation**: Check the `docs/` directory for detailed guides
 - **Examples**: See `notebooks/` for usage examples
 
@@ -697,4 +681,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Clustering powered by [UMAP](https://umap-learn.readthedocs.io/) and [HDBSCAN](https://hdbscan.readthedocs.io/)
 - Web interface built with [Gradio](https://gradio.app/)
 - Dataset: [GoEmotions](https://github.com/google-research/google-research/tree/master/goemotions) by Google Research
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88

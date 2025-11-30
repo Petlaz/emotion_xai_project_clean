@@ -1,14 +1,49 @@
-# Production dependencies
-pandas>=2.1.0
-numpy>=1.24.0
-scikit-learn>=1.3.0
-transformers>=4.30.0
+# Emotion-XAI Project Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core ML/AI Libraries
 torch>=2.0.0
-sentence-transformers>=2.2.0
-umap-learn>=0.5.3
-hdbscan>=0.8.30
+transformers>=4.30.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.1.0
+
+# Explainability
 shap>=0.42.0
 lime>=0.2.0
+
+# Clustering and Embeddings  
+umap-learn>=0.5.3
+hdbscan>=0.8.30
+sentence-transformers>=2.2.0
+
+# Visualization and Interface
 plotly>=5.15.0
 gradio>=4.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Configuration and Utils
 pyyaml>=6.0.0
+
+# Development and Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+flake8-docstrings>=1.7.0
+mypy>=1.0.0
+pre-commit>=3.0.0
+bandit>=1.7.0
+safety>=2.3.0
+
+# Documentation
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.3.0
+myst-parser>=2.0.0
+
+# Jupyter (for notebooks)
+jupyter>=1.0.0
+ipykernel>=6.20.0

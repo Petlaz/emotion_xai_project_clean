@@ -182,3 +182,8 @@ docker/
 docker-compose.yml
 .env.local
 .env.*.local
+
+# Temporary files
+*.tmp
+*.bak
+*~

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Mac Optimization Guide for Explainable AI for Emotion Detection in Social Media Text
 
 This guide provides comprehensive instructions for optimizing the project "Explainable AI for Emotion Detection in Social Media Text" on macOS, particularly for Apple Silicon (M1/M2/M3) chips.
+=======
+# Mac Optimization Guide for Emotion XAI Project
+
+This guide provides comprehensive instructions for optimizing the Emotion XAI project on macOS, particularly for Apple Silicon (M1/M2/M3) chips.
+>>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
 
 ## 🍎 Apple Silicon Overview
 

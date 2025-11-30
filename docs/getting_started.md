@@ -11,7 +11,7 @@ pip install emotion-xai
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Petlaz/emotion-xai-project.git
+git clone https://github.com/Petlaz/emotion-xai-project_clean.git
 cd emotion-xai-project
 ```
 

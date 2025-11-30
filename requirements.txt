@@ -1,5 +1,7 @@
-# Emotion-XAI Project Dependencies
+########################################
+# Unified requirements for Emotion-XAI  #
 # Install with: pip install -r requirements.txt
+########################################
 
 # Core ML/AI Libraries
 torch>=2.0.0
@@ -12,7 +14,7 @@ pandas>=2.1.0
 shap>=0.42.0
 lime>=0.2.0
 
-# Clustering and Embeddings  
+# Clustering and Embeddings
 umap-learn>=0.5.3
 hdbscan>=0.8.30
 sentence-transformers>=2.2.0

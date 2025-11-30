@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Comprehensive theme discovery pipeline using UMAP + HDBSCAN clustering.
 
@@ -394,7 +393,6 @@ if __name__ == "__main__":
     print(f"   Silhouette score: {summary['silhouette_score']:.3f}")
     
     logger.info("🎉 Clustering pipeline test completed successfully")
-=======
 """Theme discovery utilities using sentence embeddings + clustering."""
 
 from __future__ import annotations
@@ -425,4 +423,3 @@ def cluster_embeddings(embeddings: np.ndarray, config: ClusteringConfig) -> np.n
     """Placeholder clustering function."""
     # TODO: Integrate UMAP + HDBSCAN pipeline here.
     return np.zeros(len(embeddings), dtype=int)
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88

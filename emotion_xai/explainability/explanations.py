@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Explainability utilities for emotion classification models.
 
@@ -23,7 +22,7 @@ except ImportError:
     SHAP_AVAILABLE = False
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-=======
+
 """Explainability utilities for the emotion classification model."""
 
 from __future__ import annotations
@@ -32,13 +31,11 @@ from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
 
 
 @dataclass
 class ExplanationResult:
     """Container for explanation artifacts."""
-<<<<<<< HEAD
     
     text: str
     predictions: Dict[str, float]
@@ -291,7 +288,6 @@ def explain_with_lime(model_path: str, text: str, **kwargs) -> ExplanationResult
     from .lime_utils import LIMEExplainer
     explainer = LIMEExplainer(model_path)
     return explainer.explain_text(text, **kwargs)
-=======
 
     raw_output: Any
     shap_values: Any | None = None
@@ -305,7 +301,8 @@ def explain_with_shap(model: Any, inputs: np.ndarray) -> ExplanationResult:
 
 
 def explain_with_lime(model: Any, inputs: np.ndarray) -> ExplanationResult:
+    
     """Placeholder LIME explanation stub."""
     # TODO: Integrate LIME text explainer.
     return ExplanationResult(raw_output=model.predict(inputs), lime_explanation=None)
->>>>>>> be3b044594b375f6fcd55554c1c72425f0629c88
+

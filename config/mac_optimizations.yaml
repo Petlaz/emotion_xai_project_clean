@@ -1,0 +1,146 @@
+# Mac-specific ML Pipeline Optimizations
+# Optimized for Apple Silicon (M1/M2/M3) chips
+
+# Hardware Detection
+hardware:
+  # Automatically detect Apple Silicon
+  auto_detect: true
+  # Force specific device (mps, cpu, cuda)
+  force_device: null
+  # Memory management
+  unified_memory_gb: 16  # Adjust based on your Mac's RAM
+
+# PyTorch Optimizations
+pytorch:
+  # Metal Performance Shaders (MPS) settings
+  mps:
+    enabled: true
+    # Use MPS if available, fallback to CPU
+    fallback_to_cpu: true
+    # Empty MPS cache after each batch to prevent memory issues
+    empty_cache: true
+    # MPS memory fraction (0.7 = use 70% of GPU memory)
+    memory_fraction: 0.7
+  
+  # Memory optimization
+  memory:
+    # Use memory mapping for large datasets
+    use_memory_mapping: true
+    # Pin memory for faster data transfer
+    pin_memory: true
+    # Number of workers for data loading (Apple Silicon optimized)
+    num_workers: 4
+    # Prefetch factor for data loading
+    prefetch_factor: 2
+    # Use multiprocessing context
+    multiprocessing_context: "spawn"
+
+# Model Training Optimizations
+training:
+  # Batch sizes optimized for M1 unified memory
+  batch_sizes:
+    baseline_model: 512      # TF-IDF can handle larger batches
+    transformer_train: 16    # Conservative for fine-tuning
+    transformer_inference: 32 # Larger for inference
+    clustering: 256          # UMAP/HDBSCAN batch size
+  
+  # Mixed precision training (if supported)
+  mixed_precision:
+    enabled: false  # MPS doesn't fully support AMP yet
+    # Enable when MPS supports it fully
+    autocast: false
+    grad_scaler: false
+  
+  # Gradient accumulation for effective larger batch sizes
+  gradient_accumulation:
+    enabled: true
+    steps: 4  # Effective batch size = batch_size * steps
+
+# Apple Silicon Specific Settings
+apple_silicon:
+  # Optimize for unified memory architecture
+  unified_memory_optimizations:
+    # Reduce memory fragmentation
+    torch_memory_format: "channels_last"
+    # Use efficient attention implementations
+    flash_attention: false  # Not yet available on MPS
+    # Optimize tensor operations
+    torch_jit_optimize: true
+  
+  # Performance monitoring
+  monitoring:
+    # Track MPS memory usage
+    track_mps_memory: true
+    # Monitor CPU/GPU utilization
+    track_system_stats: true
+    # Log performance metrics
+    log_performance: true
+
+# Development Environment
+development:
+  # Jupyter notebook optimizations
+  jupyter:
+    # Increase memory limit for notebooks
+    memory_limit: "8GB"
+    # Use MPS backend for matplotlib
+    matplotlib_backend: "TkAgg"
+  
+  # VS Code settings
+  vscode:
+    # Python interpreter settings
+    python_path: ".venv/bin/python"
+    # Pylance optimizations
+    pylance_memory_mb: 4096
+
+# Data Processing Optimizations
+data:
+  # Pandas optimizations for Apple Silicon
+  pandas:
+    # Use efficient dtypes
+    optimize_dtypes: true
+    # Enable string dtype optimizations
+    string_dtype: "string"
+    # Use categorical for repeated strings
+    auto_categorical: true
+  
+  # NumPy optimizations
+  numpy:
+    # Use optimized BLAS (vecLib on macOS)
+    use_mkl: false
+    use_veclib: true
+    # Thread count for NumPy operations
+    thread_count: 8
+
+# Hugging Face Optimizations
+huggingface:
+  # Cache settings
+  cache_dir: "./models/.cache"
+  # Use fast tokenizers
+  use_fast_tokenizer: true
+  # Model loading optimizations
+  torch_dtype: "float32"  # MPS works best with float32
+  low_cpu_mem_usage: true
+
+# Monitoring and Logging
+monitoring:
+  # Performance tracking
+  track_training_time: true
+  track_memory_usage: true
+  track_mps_utilization: true
+  
+  # Logging levels
+  log_level: "INFO"
+  log_file: "logs/mac_performance.log"
+  
+  # Alerts for performance issues
+  alerts:
+    memory_threshold: 0.9   # Alert if memory usage > 90%
+    temperature_threshold: 85  # Alert if CPU temp > 85°C
+
+# Fallback Settings
+fallback:
+  # If MPS fails, use these settings
+  cpu_only_mode:
+    num_workers: 8
+    batch_size_multiplier: 2
+    use_threading: true

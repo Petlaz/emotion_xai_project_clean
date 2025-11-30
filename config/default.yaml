@@ -1,0 +1,48 @@
+# Default configuration for emotion-xai project
+
+# Data settings
+data:
+  raw_data_path: "data/raw/goemotions.csv"
+  processed_data_path: "data/processed/goemotions_processed.csv"
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+
+# Model settings
+model:
+  name: "distilroberta-base"
+  num_labels: 28
+  max_length: 512
+  dropout: 0.1
+
+# Training settings
+training:
+  batch_size: 16
+  learning_rate: 2e-5
+  num_epochs: 3
+  warmup_steps: 100
+  weight_decay: 0.01
+  save_steps: 500
+  logging_steps: 100
+  evaluation_strategy: "steps"
+  eval_steps: 500
+
+# Clustering settings
+clustering:
+  embedding_model: "all-MiniLM-L6-v2"
+  n_neighbors: 15
+  min_dist: 0.1
+  min_cluster_size: 10
+  metric: "cosine"
+
+# Explainability settings
+explainability:
+  max_shap_samples: 100
+  lime_num_features: 10
+  lime_num_samples: 1000
+
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/emotion_xai.log"

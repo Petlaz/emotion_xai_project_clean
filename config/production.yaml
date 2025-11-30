@@ -1,0 +1,17 @@
+# Production configuration
+
+# Production optimized settings
+training:
+  batch_size: 32  # Larger batch size for production
+  num_epochs: 5   # More epochs for better performance
+  save_steps: 1000
+  eval_steps: 1000
+
+logging:
+  level: "INFO"
+  file: "/var/log/emotion_xai/emotion_xai.log"
+
+# Production paths
+data:
+  raw_data_path: "/data/emotion_xai/goemotions.csv"
+  processed_data_path: "/data/emotion_xai/processed/goemotions_processed.csv"

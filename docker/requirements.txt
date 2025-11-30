@@ -1,0 +1,6 @@
+# Docker-specific requirements
+# Use the main requirements.txt from the project root
+-r ../requirements.txt
+
+# Additional Docker-specific packages if needed
+# (none currently)

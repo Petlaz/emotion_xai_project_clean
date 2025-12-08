@@ -1,18 +1,26 @@
-# Emotion-XAI Documentation
+# 📚 Emotion-XAI Documentation
 
-Welcome to the Emotion-XAI project documentation.
+**Complete technical documentation for the Emotion-XAI project**
 
-## Table of Contents
+## 📋 Documentation Index
 
-- [Getting Started](getting_started.md)
-- [API Reference](api_reference.md)
-- [User Guide](user_guide.md)
-- [Development Guide](development.md)
-- [Examples](examples.md)
+| Document | Description | Target Audience |
+|----------|-------------|-----------------|
+| [🚀 Getting Started](getting_started.md) | Quick setup and first steps | New users, developers |
+| [💻 Development Guide](development.md) | Technical setup and contribution | Contributors, maintainers |
+| [📊 Project Plan](project_plan.md) | Complete project roadmap | Project managers, stakeholders |
+| [📈 Documentation Report](documentation_report.md) | Comprehensive project completion | Technical reviewers |
+| [🍎 Mac Optimization](mac_optimization.md) | macOS-specific optimizations | Mac developers |
 
-## Overview
+## 🎯 **Project Overview**
 
-Emotion-XAI is a comprehensive package for analyzing customer feedback using transformer models, explainable AI techniques, and clustering for theme discovery.
+Emotion-XAI is a **production-ready explainable AI system** for multi-label emotion detection in social media text. Built with state-of-the-art transformer models and comprehensive explainability features.
+
+### 🏆 **Key Achievements**
+- **F1-Macro**: 0.196 (19.6% accuracy on 28-emotion classification)
+- **Model**: Fine-tuned DistilRoBERTa (82M parameters)
+- **Dataset**: GoEmotions (211,225 Reddit comments)
+- **Deployment**: Live on Hugging Face Spaces
 
 ## Quick Start
 

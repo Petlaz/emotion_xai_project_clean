@@ -23,15 +23,6 @@ except ImportError:
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-"""Explainability utilities for the emotion classification model."""
-
-from __future__ import annotations
-
-from dataclasses import dataclass
-from typing import Any
-
-import numpy as np
-
 
 @dataclass
 class ExplanationResult:
